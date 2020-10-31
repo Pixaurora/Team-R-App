@@ -104,6 +104,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+
+    <!-- this block is wip idk why it wont work lol -->
     <EditText
         android:id="@+id/daily reminder "
         android:layout_width="wrap_content"
