@@ -105,11 +105,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/daily_reminder" />
 
+    <!-- I have no idea why this wont work lol fml -->
     <EditText
         android:id="@+id/editTextTime"
         android:layout_width="229dp"
         android:layout_height="32dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="time"
         app:layout_constraintBottom_toTopOf="@+id/daily_reminder"
