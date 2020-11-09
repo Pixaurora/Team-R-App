@@ -84,7 +84,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="200dp"
         android:layout_marginRight="200dp"
-        android:onClick="sendOnChannel1"
         android:text="@string/home_medsText"
         android:textColor="#000000"
         android:textSize="24sp"
