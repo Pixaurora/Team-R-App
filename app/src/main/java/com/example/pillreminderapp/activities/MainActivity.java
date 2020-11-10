@@ -8,6 +8,8 @@ import androidx.core.app.NotificationManagerCompat;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +18,6 @@ import android.widget.Button;
 
 import com.example.pillreminderapp.R;
 
-@RequiresApi(api = Build.VERSION_CODES.M)
 public class MainActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
     Button daily_reminder;
@@ -41,12 +42,15 @@ public class MainActivity extends AppCompatActivity {
                 builder.setSmallIcon(R.drawable.pill_icon);
                 builder.setContentTitle(title);  ///set characteristics of notification
                 builder.setContentText(notif);
-                builder.setAutoCancel(true)
-                        .build();
-                NotificationManagerCompat managerCompat = NotificationManagerCompat.from(MainActivity.this);
+                builder.setAutoCancel(true);
+                Intent intent= new Intent(MainActivity.this,NotificationActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("reminder",notif);
+                PendingIntent pendingIntent =PendingIntent.getActivity(MainActivity.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                NotificationManager managerCompat = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
                 managerCompat.notify(1, builder.build());
-            }
 
+            }
         }
         );}
         public void goToSettingsActivity (View view){

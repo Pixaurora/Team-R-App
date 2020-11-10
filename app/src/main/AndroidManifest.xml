@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MedsActivity"></activity>
+        <activity android:name=".activities.NotificationActivity"></activity>
+        <activity android:name=".activities.MedsActivity" />
         <activity android:name=".activities.MedInfoActivity" />
         <activity android:name=".activities.CalendarActivity" />
         <activity android:name=".activities.MainActivity">
