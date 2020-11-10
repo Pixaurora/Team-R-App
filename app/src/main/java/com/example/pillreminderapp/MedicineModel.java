@@ -1,6 +1,6 @@
 package com.example.pillreminderapp;
 
-public class UserModel
+public class MedicineModel
 {
     private String name;
     private String pill;
@@ -9,7 +9,7 @@ public class UserModel
     //constructor
 
 
-    public UserModel(String name, String pill, String timeTaken)
+    public MedicineModel(String name, String pill, String timeTaken)
     {
         this.name = name;
         this.pill = pill;

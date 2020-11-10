@@ -14,6 +14,7 @@ import java.util.List;
 /*
 *Class helps with using SQLite open helper and creating a database
 * Made by: Deven Sharma
+* Edited by: Rina Shaw
  */
 public class DatabaseHelper extends SQLiteOpenHelper
 {
@@ -43,7 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
     //adds one more column to the database table
-    public boolean addOne(UserModel model)
+    public boolean addOne(MedicineModel model)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -61,11 +62,11 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
     //gets a result set to return all records
-    public List<UserModel> getEveryone()
+    public List<MedicineModel> getEveryone()
     {
-        List<UserModel> returnList = new ArrayList<>();
+        List<MedicineModel> returnList = new ArrayList<>();
 
-        String query = "SELECT * FROM " + TABLE_NAME;
+        String query = "SELECT Name, Pill, Time_Taken FROM Medications_Table";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -78,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 String pillName = cursor.getString(1);
                 String timeTaken = cursor.getString(2);
 
-                UserModel model = new UserModel(userName, pillName, timeTaken);
+                MedicineModel model = new MedicineModel(userName, pillName, timeTaken);
                 returnList.add(model);
             } while(cursor.moveToFirst());
         }
@@ -89,5 +90,20 @@ public class DatabaseHelper extends SQLiteOpenHelper
         cursor.close();
         db.close();
         return returnList;
+    }
+
+    public MedicineModel getOneByID(int ID) {
+        String query = "SELECT Name, Pill, Time_Taken FROM Medications_Table";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        String userName = cursor.getString(0);
+        String pillName = cursor.getString(1);
+        String timeTaken = cursor.getString(2);
+
+        MedicineModel model = new MedicineModel(userName, pillName, timeTaken);
+
+        return model;
+
     }
 }
