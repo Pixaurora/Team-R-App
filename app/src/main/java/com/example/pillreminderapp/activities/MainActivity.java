@@ -28,11 +28,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         daily_reminder=findViewById(R.id.daily_reminder);
+        checkBuildVersion();
+        buttonClicked();
+    }
+
+    private void checkBuildVersion() {
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) { /// only newer versions of android have channels
             NotificationChannel channel1 = new NotificationChannel("Channel1", "Channel 1", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel1);
         }
+    }
+
+    private void buttonClicked() {
         daily_reminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 builder.setContentTitle(title);  ///set characteristics of notification
                 builder.setContentText(notif);
                 builder.setAutoCancel(true);
-                Intent intent= new Intent(MainActivity.this,NotificationActivity.class);
+                Intent intent= new Intent(MainActivity.this, NotificationActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("reminder",notif);
                 PendingIntent pendingIntent =PendingIntent.getActivity(MainActivity.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
@@ -52,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-        );}
-        public void goToSettingsActivity (View view){
+        );
+    }
+
+    public void goToSettingsActivity (View view){
 
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
