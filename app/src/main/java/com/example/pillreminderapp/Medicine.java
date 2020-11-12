@@ -1,18 +1,37 @@
 package com.example.pillreminderapp;
 
-public class MedicineModel
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "medicine_table")
+public class Medicine
 {
+
+    @PrimaryKey(autoGenerate = true)
+    private int ID;
+
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "name")
     private String name;
-    private String pill;
+
+    @ColumnInfo(name = "type")
+    @NonNull
+    private String type;
+
+    @NonNull
+    @ColumnInfo(name = "time_taken")
     private String timeTaken;
 
     //constructor
 
 
-    public MedicineModel(String name, String pill, String timeTaken)
+    public Medicine(String name, String type, String timeTaken)
     {
         this.name = name;
-        this.pill = pill;
+        this.type = type;
         this.timeTaken = timeTaken;
     }
 
@@ -23,7 +42,7 @@ public class MedicineModel
     {
         return "UserModel{" +
                 "name='" + name + '\'' +
-                ", pill='" + pill + '\'' +
+                ", type='" + type + '\'' +
                 ", timeTaken='" + timeTaken + '\'' +
                 '}';
     }
@@ -43,12 +62,12 @@ public class MedicineModel
 
     public String getPill()
     {
-        return pill;
+        return type;
     }
 
     public void setPill(String pill)
     {
-        this.pill = pill;
+        this.type = pill;
     }
 
     public String getTimeTaken()

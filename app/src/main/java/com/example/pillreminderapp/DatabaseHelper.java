@@ -44,7 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
 
     }
     //adds one more column to the database table
-    public boolean addOne(MedicineModel model)
+    public boolean addOne(Medicine model)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -62,9 +62,9 @@ public class DatabaseHelper extends SQLiteOpenHelper
         }
     }
     //gets a result set to return all records
-    public List<MedicineModel> getEveryone()
+    public List<Medicine> getEveryone()
     {
-        List<MedicineModel> returnList = new ArrayList<>();
+        List<Medicine> returnList = new ArrayList<>();
 
         String query = "SELECT Name, Pill, Time_Taken FROM Medications_Table";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -79,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
                 String pillName = cursor.getString(1);
                 String timeTaken = cursor.getString(2);
 
-                MedicineModel model = new MedicineModel(userName, pillName, timeTaken);
+                Medicine model = new Medicine(userName, pillName, timeTaken);
                 returnList.add(model);
             } while(cursor.moveToFirst());
         }
@@ -92,7 +92,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         return returnList;
     }
 
-    public MedicineModel getOneByID(int ID) {
+    public Medicine getOneByID(int ID) {
         String query = "SELECT Name, Pill, Time_Taken FROM Medications_Table";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
@@ -101,7 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper
         String pillName = cursor.getString(1);
         String timeTaken = cursor.getString(2);
 
-        MedicineModel model = new MedicineModel(userName, pillName, timeTaken);
+        Medicine model = new Medicine(userName, pillName, timeTaken);
 
         return model;
 
