@@ -1,4 +1,4 @@
-package com.example.pillreminderapp;
+package com.example.pillreminderapp.datastorage;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -12,7 +12,6 @@ public class Medicine
     @PrimaryKey(autoGenerate = true)
     private int ID;
 
-    @PrimaryKey
     @NonNull
     @ColumnInfo(name = "name")
     private String name;
@@ -28,8 +27,9 @@ public class Medicine
     //constructor
 
 
-    public Medicine(String name, String type, String timeTaken)
+    public Medicine(int ID, String name, String type, String timeTaken)
     {
+        this.ID = ID;
         this.name = name;
         this.type = type;
         this.timeTaken = timeTaken;
@@ -50,6 +50,15 @@ public class Medicine
 
     //getter + setters
 
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
     public String getName()
     {
         return name;
@@ -60,12 +69,12 @@ public class Medicine
         this.name = name;
     }
 
-    public String getPill()
+    public String getType()
     {
         return type;
     }
 
-    public void setPill(String pill)
+    public void setType(String pill)
     {
         this.type = pill;
     }

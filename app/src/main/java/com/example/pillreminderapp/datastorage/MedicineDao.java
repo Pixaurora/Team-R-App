@@ -1,10 +1,13 @@
-package com.example.pillreminderapp;
+package com.example.pillreminderapp.datastorage;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
+import com.example.pillreminderapp.datastorage.Medicine;
 
 import java.util.List;
 
@@ -17,5 +20,5 @@ public interface MedicineDao {
     void deleteAll();
 
     @Query("SELECT * FROM medicine_table ORDER BY ID asc")
-    List<Medicine> getAllMedicines();
+    LiveData<List<Medicine>> getAllMedicines();
 }
