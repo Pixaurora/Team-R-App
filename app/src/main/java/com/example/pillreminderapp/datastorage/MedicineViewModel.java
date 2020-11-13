@@ -19,7 +19,7 @@ public class MedicineViewModel extends AndroidViewModel {
         mAllMedicines = mRepository.getAllMedicines();
     }
 
-    LiveData<List<Medicine>> getAllMedicines() { return mAllMedicines; }
+    public LiveData<List<Medicine>> getAllMedicines() { return mAllMedicines; }
 
     public void insert(Medicine Medicine) { mRepository.insert(Medicine); }
 }
