@@ -88,4 +88,10 @@ public class Medicine
     {
         this.timeTaken = timeTaken;
     }
+
+    public String getMedicine()
+    {
+        String medicine = null;
+        return medicine;
+    }
 }

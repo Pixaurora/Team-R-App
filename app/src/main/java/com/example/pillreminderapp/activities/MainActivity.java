@@ -4,6 +4,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -17,6 +19,7 @@ import android.content.Intent;
 import android.widget.Button;
 
 import com.example.pillreminderapp.R;
+import com.example.pillreminderapp.datastorage.MedicineListAdapter;
 
 public class MainActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
@@ -27,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        final MedicineListAdapter adapter = new MedicineListAdapter(new MedicineListAdapter.MedicineDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         daily_reminder=findViewById(R.id.daily_reminder);
         checkBuildVersion();
         buttonClicked();

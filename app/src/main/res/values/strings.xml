@@ -32,5 +32,9 @@
     <string name="medicationNameField">Medication Name</string>
     <string name="SetReminderTime">Set Reminder Time</string>
     <string name="add_word">Add Word</string>
+    <!-- newMedicineActivity Strings-->
+    <string name="hint_Medicine">Medicine...</string>
+    <string name="button_save">Save</string>
+    <string name="empty_not_saved">Medicine not saved because it is empty.</string>
 
 </resources>
