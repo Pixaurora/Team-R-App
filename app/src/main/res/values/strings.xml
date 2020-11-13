@@ -31,5 +31,6 @@
     <string name="AddMedication">Add Medication:</string>
     <string name="medicationNameField">Medication Name</string>
     <string name="SetReminderTime">Set Reminder Time</string>
+    <string name="add_word">Add Word</string>
 
 </resources>
