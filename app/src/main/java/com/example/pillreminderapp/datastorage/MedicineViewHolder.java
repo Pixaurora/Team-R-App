@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pillreminderapp.R;
 
-class MedicineViewHolder extends RecyclerView.ViewHolder {
+public class MedicineViewHolder extends RecyclerView.ViewHolder {
     private final TextView MedicineItemView;
 
     private MedicineViewHolder(View itemView) {

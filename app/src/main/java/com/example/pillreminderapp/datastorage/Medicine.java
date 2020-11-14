@@ -24,6 +24,8 @@ public class Medicine
     @ColumnInfo(name = "time_taken")
     private String timeTaken;
 
+
+
     //constructor
 
 
@@ -33,6 +35,7 @@ public class Medicine
         this.name = name;
         this.type = type;
         this.timeTaken = timeTaken;
+
     }
 
     //toString
@@ -91,7 +94,7 @@ public class Medicine
 
     public String getMedicine()
     {
-        String medicine = null;
+        String medicine = toString();
         return medicine;
     }
 }

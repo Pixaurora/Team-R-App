@@ -29,7 +29,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
     private MedicineViewModel mMedicineViewModel;
-    public static final int NEW_Medicine_ACTIVITY_REQUEST_CODE = 1;
     Button daily_reminder;
 
 
@@ -37,21 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final MedicineListAdapter adapter = new MedicineListAdapter(new MedicineListAdapter.MedicineDiff());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mMedicineViewModel = new ViewModelProvider(this).get(MedicineViewModel.class);
-        mMedicineViewModel.getAllMedicines().observe(this, Medicines -> {
-            // Update the cached copy of the Medicines in the adapter.
-            adapter.submitList(Medicines);
-        });
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener( view -> {
-            Intent intent = new Intent(MainActivity.this, NewMedicineActivity.class);
-            startActivityForResult(intent, NEW_Medicine_ACTIVITY_REQUEST_CODE);
-        });
-        daily_reminder=findViewById(R.id.daily_reminder);
+        daily_reminder = findViewById(R.id.daily_reminder);
         checkBuildVersion();
         buttonClicked();
     }
@@ -64,21 +49,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-/*
-        if (requestCode == NEW_Medicine_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Medicine Medicine = new Medicine(data.getStringExtra(NewMedicineActivity.EXTRA_REPLY));
-            mMedicineViewModel.insert(Medicine);
-        } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show();
-        }
 
- */
-    }
 
 
 
