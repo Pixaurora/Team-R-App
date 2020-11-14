@@ -29,16 +29,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class MainActivity extends AppCompatActivity {
     private NotificationManagerCompat notificationManager;
     private MedicineViewModel mMedicineViewModel;
-    Button daily_reminder;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        daily_reminder = findViewById(R.id.daily_reminder);
+//        daily_reminder = findViewById(R.id.daily_reminder);
         checkBuildVersion();
-        buttonClicked();
+//        buttonClicked();
     }
 
     private void checkBuildVersion() {
@@ -53,28 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void buttonClicked() {
-        daily_reminder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String title = "Title";
-                String notif = "Take your pills!";
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this, "Channel1");
-                builder.setSmallIcon(R.drawable.pill_icon);
-                builder.setContentTitle(title);  ///set characteristics of notification
-                builder.setContentText(notif);
-                builder.setAutoCancel(true);
-                Intent intent= new Intent(MainActivity.this, NotificationActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("reminder",notif);
-                PendingIntent pendingIntent =PendingIntent.getActivity(MainActivity.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                NotificationManager managerCompat = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-                managerCompat.notify(1, builder.build());
 
-            }
-        }
-        );
-    }
 
     public void goToSettingsActivity (View view){
 
@@ -99,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         public void goToMedsActivity (View view){
 
-            Intent intent = new Intent(this, MedsActivity.class);
+            Intent intent = new Intent(this, NewMedicineActivity.class);
             startActivity(intent);
 
         }

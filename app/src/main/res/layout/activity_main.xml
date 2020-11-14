@@ -6,30 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
+<!--    <TextView-->
+<!--        android:id="@+id/todayMeds"-->
+<!--        android:layout_width="246dp"-->
+<!--        android:layout_height="125dp"-->
+<!--        android:text="Example List of medicaitons"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/home_button2"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/daily_reminder" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/editTextTime"-->
+<!--        android:layout_width="229dp"-->
+<!--        android:layout_height="32dp"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="time"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/daily_reminder"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/daily_reminder"-->
+<!--        android:layout_width="177dp"-->
+<!--        android:layout_height="85dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="200dp"-->
+<!--        android:text="@string/home_medsText"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textSize="24sp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/home_button2"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.47"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.238" />-->
+
     <Button
         android:id="@+id/home_button2"
         style="@android:style/Widget.Material.Button"
-        android:layout_width="411dp"
+        android:layout_width="400dp"
         android:layout_height="120dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/holo_orange_light"
         android:drawableLeft="@drawable/calendar_icon"
+        android:onClick="goToCalendarActivity"
         android:text="@string/home_button2"
         android:textColor="@android:color/black"
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/add_medication"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:targetApi="lollipop"
-        android:onClick="goToCalendarActivity"
-        />
+        tools:targetApi="lollipop" />
+
 
     <Button
         android:id="@+id/add_medication"
         style="@android:style/Widget.Material.Button"
-        android:layout_width="0dp"
+        android:layout_width="400dp"
         android:layout_height="120dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:background="@android:color/holo_blue_light"
         android:drawableLeft="@drawable/doctor_icon"
         android:onClick="goToMedsActivity"
@@ -38,15 +75,14 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/home_button1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         tools:targetApi="lollipop" />
-
 
     <Button
         android:id="@+id/home_button1"
         style="@android:style/Widget.Material.Button"
-        android:layout_width="0dp"
+        android:layout_width="400dp"
         android:layout_height="120dp"
         android:layout_marginBottom="20dp"
         android:background="@android:color/holo_red_light"
@@ -77,44 +113,7 @@
         android:onClick="goToSettingsActivity"
         />
 
-    <Button
-        android:id="@+id/daily_reminder"
-        android:layout_width="177dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginRight="200dp"
-        android:text="@string/home_medsText"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/home_button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.238" />
-
-    <TextView
-        android:id="@+id/todayMeds"
-        android:layout_width="246dp"
-        android:layout_height="125dp"
-        android:text="Example List of medicaitons"
-        app:layout_constraintBottom_toTopOf="@+id/home_button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/daily_reminder" />
-
     <!-- I have no idea why this wont work lol fml -->
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="229dp"
-        android:layout_height="32dp"
-        android:ems="10"
-        android:inputType="time"
-        app:layout_constraintBottom_toTopOf="@+id/daily_reminder"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,11 +43,12 @@ public class Medicine
     @Override
     public String toString()
     {
-        return "UserModel{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", timeTaken='" + timeTaken + '\'' +
-                '}';
+//        return "UserModel{" +
+//                "name='" + name + '\'' +
+//                ", type='" + type + '\'' +
+//                ", timeTaken='" + timeTaken + '\'' +
+//                '}';
+        return "Medicine name: " + name;
     }
 
 
