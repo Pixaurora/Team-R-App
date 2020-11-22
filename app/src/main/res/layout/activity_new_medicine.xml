@@ -23,4 +23,11 @@
         android:layout_margin="@dimen/big_padding"
         android:textColor="@color/buttonLabel" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        
+        />
+
 </LinearLayout>
