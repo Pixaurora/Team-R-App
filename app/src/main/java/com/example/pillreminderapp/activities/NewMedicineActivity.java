@@ -12,6 +12,10 @@ import android.widget.Spinner;
 
 import com.example.pillreminderapp.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class NewMedicineActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.Medicinelistsql.REPLY";
@@ -42,6 +46,28 @@ public class NewMedicineActivity extends AppCompatActivity {
                 R.array.medicine_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+
+    }
+
+    public String getTimeNow (){
+
+        String currentTime;
+
+        return currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+
+    }
+
+    public boolean checkTime (String timeNow, String timeMed){
+
+        if (timeNow.equals(timeMed)){
+
+            return true;
+
+        } else {
+
+            return false;
+
+        }
 
     }
 }
