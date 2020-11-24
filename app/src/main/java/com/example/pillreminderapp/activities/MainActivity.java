@@ -18,17 +18,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.pillreminderapp.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -148,15 +147,11 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        },new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError volleyError) {
-//                Toast.makeText(Quiz.this, "Error: ", Toast.LENGTH_SHORT).show();
-                Log.d("verror","Error: "+volleyError.getMessage());
-            }
+        }, volleyError -> {
+            Log.d("verror","Error: "+volleyError.getMessage());
         }){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<String, String>();
                 parameters.put("imei",imei);
                 parameters.put("token",token1);
