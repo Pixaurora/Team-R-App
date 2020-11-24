@@ -36,7 +36,8 @@
         app:layout_constraintBottom_toTopOf="@+id/button_save"
         app:layout_constraintTop_toBottomOf="@+id/eveningBox"
         app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="218dp" />
+        tools:layout_editor_absoluteX="218dp"
+        tools:ignore="MissingConstraints" />
 
     <CheckBox
         android:id="@+id/noonBox"
@@ -148,7 +149,8 @@
         android:text="With Food:"
         android:textSize="30sp"
         app:layout_constraintTop_toBottomOf="@+id/refridgerateSwitch"
-        tools:layout_editor_absoluteX="61dp" />
+        tools:layout_editor_absoluteX="61dp"
+        tools:ignore="MissingConstraints" />
 
     <Switch
         android:id="@+id/prescriptionSwitch"
