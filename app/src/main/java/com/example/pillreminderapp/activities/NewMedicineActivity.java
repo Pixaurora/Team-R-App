@@ -1,5 +1,6 @@
 package com.example.pillreminderapp.activities;
 
+<<<<<<< Updated upstream
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,14 +9,26 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+=======
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.InputType;
+>>>>>>> Stashed changes
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,6 +50,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -47,10 +61,21 @@ public class NewMedicineActivity extends AppCompatActivity {
     String IMEINumber="",token="";
     public static final String EXTRA_REPLY = "com.example.android.Medicinelistsql.REPLY";
     private EditText mEditMedicineView;
+<<<<<<< Updated upstream
+=======
+    DatePickerDialog pickerDate;
+    EditText eText;
+    Button btnGet;
+    TextView tvw;
+
+>>>>>>> Stashed changes
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medicine);
+
+        /** comment out for broken stuff idk
+
         mEditMedicineView = findViewById(R.id.edit_Medicine);
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(view -> {
@@ -71,7 +96,11 @@ public class NewMedicineActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+<<<<<<< Updated upstream
         getDeviceIMEI();
+
+         **/
+
     }
     @SuppressLint("HardwareIds")
     public void getDeviceIMEI() {
@@ -165,6 +194,48 @@ public class NewMedicineActivity extends AppCompatActivity {
         rQueue.add(request);
     }
     public String getTimeNow() {
+=======
+
+        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
+        picker.setIs24HourView(false);
+
+        tvw=(TextView)findViewById(R.id.textView1);
+        eText=(EditText) findViewById(R.id.editText1);
+        eText.setInputType(InputType.TYPE_NULL);
+        eText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+
+                pickerDate = new DatePickerDialog(NewMedicineActivity.this,
+                        new DatePickerDialog.OnDateSetListener()
+                        {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+                            {
+                                eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                pickerDate.show();
+            }
+        });
+        btnGet=(Button)findViewById(R.id.button1);
+        btnGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvw.setText("Selected Date: "+ eText.getText());
+            }
+        });
+    }
+
+
+
+
+    public String getTimeNow (){
+>>>>>>> Stashed changes
 
         String currentTime;
 
@@ -193,6 +264,13 @@ public class NewMedicineActivity extends AppCompatActivity {
     }
 
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void goToMainActivity (View view){
+
+        Intent intent = new Intent (this, MainActivity.class);
+        startActivity(intent);
 
     }
 
