@@ -51,6 +51,9 @@ public class NewMedicineActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medicine);
+
+        /** comment out for broken stuff idk
+
         mEditMedicineView = findViewById(R.id.edit_Medicine);
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(view -> {
@@ -72,6 +75,9 @@ public class NewMedicineActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         getDeviceIMEI();
+
+         **/
+
     }
     @SuppressLint("HardwareIds")
     public void getDeviceIMEI() {

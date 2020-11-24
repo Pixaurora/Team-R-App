@@ -7,20 +7,20 @@
         android:id="@+id/edit_Medicine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/min_height"
+        android:layout_margin="@dimen/big_padding"
         android:fontFamily="sans-serif-light"
         android:hint="@string/hint_Medicine"
         android:inputType="textAutoComplete"
-        android:layout_margin="@dimen/big_padding"
+        android:minHeight="@dimen/min_height"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/big_padding"
         android:background="@color/colorPrimary"
         android:text="@string/button_save"
-        android:layout_margin="@dimen/big_padding"
         android:textColor="@color/buttonLabel" />
 
     <Spinner
