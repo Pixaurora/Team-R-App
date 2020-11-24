@@ -1,18 +1,106 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activities.NewMedicineActivity">
+
+    <CheckBox
+        android:id="@+id/afternoonBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Afternoon"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/timeOfDayText"
+        app:layout_constraintStart_toStartOf="@+id/eveningBox" />
+
+    <CheckBox
+        android:id="@+id/morningBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="Morning"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.813"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/withFoodSwitch" />
+
+    <CheckBox
+        android:id="@+id/bedtimeBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bedtime"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_save"
+        app:layout_constraintTop_toBottomOf="@+id/eveningBox"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="218dp" />
+
+    <CheckBox
+        android:id="@+id/noonBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Noon"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/afternoonBox"
+        app:layout_constraintStart_toStartOf="@+id/afternoonBox"
+        app:layout_constraintTop_toBottomOf="@+id/morningBox" />
+
+    <CheckBox
+        android:id="@+id/eveningBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Evening"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/bedtimeBox"
+        app:layout_constraintTop_toBottomOf="@+id/afternoonBox" />
+
+    <ImageButton
+        android:id="@+id/buttonToHome_arrow"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+        android:onClick="goToMainActivity"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_icon" />
+
+    <ImageButton
+        android:id="@+id/buttonToHome_home"
+        android:layout_width="45dp"
+        android:layout_height="42dp"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+        android:onClick="goToMainActivity"
+        android:scaleType="fitStart"
+        app:layout_constraintStart_toEndOf="@+id/buttonToHome_arrow"
+        app:layout_constraintTop_toTopOf="@+id/buttonToHome_arrow"
+        app:srcCompat="@drawable/home_icon" />
 
     <EditText
         android:id="@+id/edit_Medicine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/big_padding"
+        android:layout_marginTop="32dp"
+        android:baselineAligned="false"
         android:fontFamily="sans-serif-light"
         android:hint="@string/hint_Medicine"
         android:inputType="textAutoComplete"
         android:minHeight="@dimen/min_height"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addMedText"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button_save"
@@ -21,13 +109,64 @@
         android:layout_margin="@dimen/big_padding"
         android:background="@color/colorPrimary"
         android:text="@string/button_save"
-        android:textColor="@color/buttonLabel" />
+        android:textColor="@color/buttonLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/addMedText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        
-        />
+        android:layout_marginTop="20dp"
+        android:text="Add Medication"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/timeOfDayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="388dp"
+        android:text="Time of Day:"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Medicine" />
+
+    <Switch
+        android:id="@+id/withFoodSwitch"
+        android:layout_width="314dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="12dp"
+        android:text="With Food:"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/refridgerateSwitch"
+        tools:layout_editor_absoluteX="61dp" />
+
+    <Switch
+        android:id="@+id/prescriptionSwitch"
+        android:layout_width="314dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="44dp"
+        android:text="Prescription:"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/refridgerateSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/edit_Medicine" />
+
+    <Switch
+        android:id="@+id/refridgerateSwitch"
+        android:layout_width="314dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="12dp"
+        android:text="Refridgerate:"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/withFoodSwitch"
+        app:layout_constraintTop_toBottomOf="@+id/prescriptionSwitch" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
