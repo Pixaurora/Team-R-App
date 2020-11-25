@@ -14,26 +14,36 @@
         android:layout_margin="@dimen/big_padding"
         android:textSize="18sp" />
 
-    <Button
-        android:id="@+id/button_save"
+    <Switch
+        android:id="@+id/prescriptionSwitch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="@string/button_save"
-        android:layout_margin="@dimen/big_padding"
-        android:textColor="@color/buttonLabel" />
+        android:lineSpacingExtra="14sp"
+        android:text="Prescription:"
+        android:textSize="30sp" />
 
-    <Spinner
-        android:id="@+id/spinner"
+    <Switch
+        android:id="@+id/refridgerateSwitch"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="14sp"
+        android:text="Refridgerate:"
+        android:textSize="30sp" />
+
+    <Switch
+        android:id="@+id/withFoodSwitch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="14sp"
+        android:text="With Food:"
+        android:textSize="30sp" />
+
 
     <TimePicker
         android:id="@+id/timePicker1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:timePickerMode="spinner"/>
-
+        android:timePickerMode="spinner" />
 
     <EditText
         android:id="@+id/editText1"
@@ -52,15 +62,14 @@
         android:layout_marginLeft="100dp"
         android:text="Get Date" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="10dp"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+        android:layout_margin="@dimen/big_padding"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_save"
+        android:textColor="@color/buttonLabel" />
 
 
 </LinearLayout>
