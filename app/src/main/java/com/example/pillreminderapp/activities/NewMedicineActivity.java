@@ -56,17 +56,17 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
             finish();
         });
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(this);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.medicine_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+//        spinner.setOnItemSelectedListener(this);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.medicine_array, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
 
 
         TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
         picker.setIs24HourView(false);
 
-        tvw=(TextView)findViewById(R.id.textView1);
+        tvw=(TextView)findViewById(R.id.textView2);
         eText=(EditText) findViewById(R.id.editText1);
         eText.setInputType(InputType.TYPE_NULL);
         eText.setOnClickListener(new View.OnClickListener() {
