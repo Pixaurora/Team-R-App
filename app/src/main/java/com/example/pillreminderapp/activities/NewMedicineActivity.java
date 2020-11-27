@@ -1,5 +1,6 @@
 package com.example.pillreminderapp.activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -37,6 +38,7 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
     Button btnGet;
     TextView tvw;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,35 +69,35 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
         picker.setIs24HourView(false);
 
         tvw=(TextView)findViewById(R.id.textView2);
-        eText=(EditText) findViewById(R.id.editText1);
-        eText.setInputType(InputType.TYPE_NULL);
-        eText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cldr = Calendar.getInstance();
-                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
-
-                pickerDate = new DatePickerDialog(NewMedicineActivity.this,
-                        new DatePickerDialog.OnDateSetListener()
-                        {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-                            {
-                                eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                            }
-                        }, year, month, day);
-                pickerDate.show();
-            }
-        });
-        btnGet=(Button)findViewById(R.id.button1);
-        btnGet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tvw.setText("Selected Date: "+ eText.getText());
-            }
-        });
+//        eText=(EditText) findViewById(R.id.editText1);
+//        eText.setInputType(InputType.TYPE_NULL);
+//        eText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                final Calendar cldr = Calendar.getInstance();
+//                int day = cldr.get(Calendar.DAY_OF_MONTH);
+//                int month = cldr.get(Calendar.MONTH);
+//                int year = cldr.get(Calendar.YEAR);
+//
+//                pickerDate = new DatePickerDialog(NewMedicineActivity.this,
+//                        new DatePickerDialog.OnDateSetListener()
+//                        {
+//                            @Override
+//                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+//                            {
+//                                eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+//                            }
+//                        }, year, month, day);
+//                pickerDate.show();
+//            }
+//        });
+//        btnGet=(Button)findViewById(R.id.button1);
+//        btnGet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tvw.setText("Selected Date: "+ eText.getText());
+//            }
+//        });
     }
 
 
@@ -106,7 +108,6 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
         String currentTime;
 
         return currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-
     }
 
     public boolean checkTime (String timeNow, String timeMed){
