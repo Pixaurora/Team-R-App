@@ -71,7 +71,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                 String Medicine = mEditMedicineView.getText().toString();
                 replyIntent.putExtra(EXTRA_REPLY, Medicine);
                 setResult(RESULT_OK, replyIntent);
-                gettokenagainstimei(IMEINumber);
+//                gettokenagainstimei(IMEINumber);
             }
             finish();
         });
