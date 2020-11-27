@@ -86,7 +86,7 @@ public class NewMedicineActivity extends AppCompatActivity {
         TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
         picker.setIs24HourView(false);
 
-        tvw=(TextView)findViewById(R.id.textView2);
+//        tvw=(TextView)findViewById(R.id.textView2);
 //        eText=(EditText) findViewById(R.id.editText1);
 //        eText.setInputType(InputType.TYPE_NULL);
 //        eText.setOnClickListener(new View.OnClickListener() {

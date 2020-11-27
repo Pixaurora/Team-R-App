@@ -20,7 +20,6 @@ tools:ignore="ProtectedPermissions" />
         android:theme="@style/AppTheme">
         <activity android:name=".activities.NewMedicineActivity"></activity>
         <activity android:name=".activities.NotificationActivity" />
-        <activity android:name=".activities.MedsActivity" />
         <activity android:name=".activities.MedInfoActivity" />
         <activity android:name=".activities.CalendarActivity" />
         <activity android:name=".activities.MainActivity">
