@@ -1,5 +1,6 @@
 package com.example.pillreminderapp.activities;
 
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,9 +10,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -20,18 +21,35 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.pillreminderapp.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
-public class NewMedicineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
-{
-
+public class NewMedicineActivity extends AppCompatActivity {
+    private static final int REQUEST_CODE = 101;
+    String IMEINumber="",token="";
     public static final String EXTRA_REPLY = "com.example.android.Medicinelistsql.REPLY";
-
     private EditText mEditMedicineView;
     DatePickerDialog pickerDate;
     EditText eText;
@@ -44,7 +62,6 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medicine);
         mEditMedicineView = findViewById(R.id.edit_Medicine);
-
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(view -> {
             Intent replyIntent = new Intent();
@@ -54,6 +71,7 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
                 String Medicine = mEditMedicineView.getText().toString();
                 replyIntent.putExtra(EXTRA_REPLY, Medicine);
                 setResult(RESULT_OK, replyIntent);
+                gettokenagainstimei(IMEINumber);
             }
             finish();
         });
@@ -110,9 +128,9 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
         return currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
     }
 
-    public boolean checkTime (String timeNow, String timeMed){
+    public boolean checkTime(String timeNow, String timeMed) {
 
-        if (timeNow.equals(timeMed)){
+        if (timeNow.equals(timeMed)) {
 
             return true;
 
@@ -125,18 +143,13 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
     }
 
     //Method helps save selected item in drop down menu
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long l)
-    {
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
         String item = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView)
-    {
+    public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
 }
-
-
