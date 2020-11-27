@@ -37,6 +37,10 @@
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Medicine not saved because it is empty.</string>
     <string name="EnterDate">Enter Date</string>
+    <string name="MedicationType">Type</string>
+    <string name="typePill">Pill</string>
+    <string name="typeInjection">Injection</string>
+    <string name="typeSnack">Snack</string>
 
     <!--drop down menu strings-->
 
