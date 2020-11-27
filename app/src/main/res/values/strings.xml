@@ -36,6 +36,7 @@
     <string name="hint_Medicine">Medicine...</string>
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Medicine not saved because it is empty.</string>
+    <string name="EnterDate">Enter Date</string>
 
     <!--drop down menu strings-->
 
