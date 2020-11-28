@@ -113,9 +113,9 @@ public class NewMedicineActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String getTime (){
         TimePicker picker = (TimePicker) findViewById(R.id.timePicker1);
-        LocalTime time = LocalTime.of(picker.getHour(), picker.getMinute());
+//        LocalTime time = LocalTime.of(, picker.getMinute());
 
-        return TimeStringConverter.TimeToString(time);
+        return Integer.toString(picker.getHour()) + ":" + Integer.toString(picker.getMinute()) ;
     }
 
 
