@@ -8,55 +8,35 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.pillreminderapp.R;
+import com.example.pillreminderapp.TimeStringConverter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.time.LocalTime;
 
 public class NewMedicineActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
     String IMEINumber="",token="";
-    public static final String EXTRA_REPLY = "com.example.android.Medicinelistsql.REPLY";
+    public static final String NAME = "com.example.android.Medicinelistsql.REPLY";
+    public static final String TYPE = "com.example.android.Medicinelistsql.REPLY";
+    public static final String TIME = "com.example.android.Medicinelistsql.REPLY";
     private EditText mEditMedicineView;
     DatePickerDialog pickerDate;
     EditText eText;
     Button btnGet;
     TextView tvw;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +49,11 @@ public class NewMedicineActivity extends AppCompatActivity {
                 setResult(RESULT_CANCELED, replyIntent);
             } else {
                 String Medicine = mEditMedicineView.getText().toString();
-                replyIntent.putExtra(EXTRA_REPLY, Medicine);
+                String Time = getTime();
+                String Type = getType();
+                replyIntent.putExtra(NAME, Medicine);
+                replyIntent.putExtra(TIME, Time);
+                replyIntent.putExtra(TYPE, Type);
                 setResult(RESULT_OK, replyIntent);
 //                gettokenagainstimei(IMEINumber);
             }
@@ -83,7 +67,7 @@ public class NewMedicineActivity extends AppCompatActivity {
 //        spinner.setAdapter(adapter);
 
 
-        TimePicker picker=(TimePicker)findViewById(R.id.timePicker1);
+        TimePicker picker = (TimePicker) findViewById(R.id.timePicker1);
         picker.setIs24HourView(false);
 
 //        tvw=(TextView)findViewById(R.id.textView2);
@@ -118,15 +102,23 @@ public class NewMedicineActivity extends AppCompatActivity {
 //        });
     }
 
+    private String getType() {
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        int selectedID = radioGroup.getCheckedRadioButtonId();
 
-
-
-    public String getTimeNow (){
-
-        String currentTime;
-
-        return currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        RadioButton radioButton = (RadioButton) findViewById(selectedID);
+        return (String) radioButton.getText();
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public String getTime (){
+        TimePicker picker = (TimePicker) findViewById(R.id.timePicker1);
+        LocalTime time = LocalTime.of(picker.getHour(), picker.getMinute());
+
+        return TimeStringConverter.TimeToString(time);
+    }
+
+
 
     public boolean checkTime(String timeNow, String timeMed) {
 

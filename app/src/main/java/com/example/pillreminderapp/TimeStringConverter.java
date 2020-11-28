@@ -17,7 +17,6 @@ public class TimeStringConverter {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static LocalTime StringToTime(String timeString) {
         LocalTime time = LocalTime.parse(timeString);
-
         return time;
     }
 }
