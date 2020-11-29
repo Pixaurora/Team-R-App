@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -158,6 +159,11 @@ public class NewMedicineActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewMedicineActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        long timeAtButtonClick = System.currentTimeMillis();
+        long notifTime = Long.parseLong(Time);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, notifTime, pendingIntent);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel1")
                 .setSmallIcon(R.mipmap.ic_launcher_round)
