@@ -39,12 +39,14 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
     private String IMEINumber="dummy",token="dummy";
     private static final String TAG = "MainActivity";
+    public static final String CHANNEL_ID = "channel1";
     private static String token1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         checkBuildVersion();
+        /*
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
                     @Override
@@ -60,13 +62,18 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         getDeviceIMEI();
+        */
+
 
     }
     private void checkBuildVersion() {
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) { /// only newer versions of android have channels
-            NotificationChannel channel1 = new NotificationChannel("Channel1", "Channel 1", NotificationManager.IMPORTANCE_DEFAULT);
+           NotificationChannel channel1 = new NotificationChannel("channel1", "Channel 1", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel1);
+
+
+
         }
     }
 

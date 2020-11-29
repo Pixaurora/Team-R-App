@@ -3,8 +3,13 @@ package com.example.pillreminderapp.activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.app.DatePickerDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +40,9 @@ public class NewMedicineActivity extends AppCompatActivity {
     EditText eText;
     Button btnGet;
     TextView tvw;
+    int NotificationId = 0;
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -55,6 +63,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                 replyIntent.putExtra(TIME, Time);
                 replyIntent.putExtra(TYPE, Type);
                 setResult(RESULT_OK, replyIntent);
+               addNotification(Medicine, Time, Type);
 //                gettokenagainstimei(IMEINumber);
             }
             finish();
@@ -141,6 +150,28 @@ public class NewMedicineActivity extends AppCompatActivity {
     }
 
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void addNotification(String Medicine, String Time, String Type)
+    {
+        Intent intent = new Intent(this, NewMedicineActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel1")
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setContentTitle("Time to take your Medicine!")
+                .setContentText("Time to take your " + Medicine + " " + Type)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(0, builder.build());
+        NotificationId++;
+
+
 
     }
 
