@@ -18,17 +18,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.android.volley.Response;
-import com.example.pillreminderapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessaging;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.pillreminderapp.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,7 +35,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
-    private String IMEINumber="dummy",token="dummy";
+    private String IMEINumber="dummy",token="dummy";  ///the notification token is saved with the device IMEI number
     private static final String TAG = "MainActivity";
     public static final String CHANNEL_ID = "channel1";
     private static String token1;
@@ -158,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
         },new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-//                Toast.makeText(Quiz.this, "Error: ", Toast.LENGTH_SHORT).show();
                 Log.d("verror","Error: "+volleyError.getMessage());
             }
         }){
