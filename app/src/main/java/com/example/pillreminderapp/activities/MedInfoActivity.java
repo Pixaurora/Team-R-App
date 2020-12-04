@@ -1,13 +1,23 @@
 package com.example.pillreminderapp.activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pillreminderapp.R;
@@ -56,7 +66,7 @@ public class MedInfoActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_Medicine_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Medicine Medicine = new Medicine( 0, data.getStringExtra(NewMedicineActivity.NAME), data.getStringExtra(NewMedicineActivity.TYPE), data.getStringExtra(NewMedicineActivity.TIME));
+            Medicine Medicine = new Medicine( 0, data.getStringExtra(NewMedicineActivity.EXTRA_REPLY), NewMedicineActivity.EXTRA_REPLY, NewMedicineActivity.EXTRA_REPLY);
             MedicineViewModel.insert(Medicine);
             //NewMedicineActivity.EXTRA_REPLY, 0), data.getStringExtra(NewMedicineActivity.EXTRA_REPLY), NewMedicineActivity.EXTRA_REPLY, NewMedicineActivity.EXTRA_REPLY
         } else {
@@ -64,10 +74,6 @@ public class MedInfoActivity extends AppCompatActivity {
                     getApplicationContext(),
                     R.string.empty_not_saved,
                     Toast.LENGTH_LONG).show();
-
-            System.out.println(data.getStringExtra(NewMedicineActivity.NAME));
-            System.out.println(data.getStringExtra(NewMedicineActivity.TIME));
-            System.out.println(data.getStringExtra(NewMedicineActivity.TYPE));
         }
 
 

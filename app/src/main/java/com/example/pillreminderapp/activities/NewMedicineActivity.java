@@ -1,38 +1,26 @@
 package com.example.pillreminderapp.activities;
 
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
-import android.app.AlarmManager;
-import android.app.DatePickerDialog;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.TimePicker;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.pillreminderapp.R;
-import com.example.pillreminderapp.TimeStringConverter;
+
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 
-public class NewMedicineActivity extends AppCompatActivity {
+public class NewMedicineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final int REQUEST_CODE = 101;
     String IMEINumber="",token="";
     public static final String NAME = "com.example.android.Medicinelistsql.REPLY1";
@@ -46,13 +34,16 @@ public class NewMedicineActivity extends AppCompatActivity {
     int NotificationId = 0;
 
 
+    public static final String EXTRA_REPLY = "com.example.android.Medicinelistsql.REPLY";
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    private EditText mEditMedicineView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_medicine);
         mEditMedicineView = findViewById(R.id.edit_Medicine);
+
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(view -> {
             Intent replyIntent = new Intent();
@@ -60,11 +51,7 @@ public class NewMedicineActivity extends AppCompatActivity {
                 setResult(RESULT_CANCELED, replyIntent);
             } else {
                 String Medicine = mEditMedicineView.getText().toString();
-                String Time = getTime();
-                String Type = getType();
-                replyIntent.putExtra(NAME, Medicine);
-                replyIntent.putExtra(TIME, Time);
-                replyIntent.putExtra(TYPE, Type);
+                replyIntent.putExtra(EXTRA_REPLY, Medicine);
                 setResult(RESULT_OK, replyIntent);
                 try {
                     addNotification(Medicine, Time, Type);
@@ -72,64 +59,20 @@ public class NewMedicineActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 //                gettokenagainstimei(IMEINumber);
+
             }
             finish();
         });
 
-//        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-//        spinner.setOnItemSelectedListener(this);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.medicine_array, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(this);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.medicine_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
-
-        TimePicker picker = (TimePicker) findViewById(R.id.timePicker1);
-        picker.setIs24HourView(false);
-
-//        tvw=(TextView)findViewById(R.id.textView2);
-//        eText=(EditText) findViewById(R.id.editText1);
-//        eText.setInputType(InputType.TYPE_NULL);
-//        eText.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final Calendar cldr = Calendar.getInstance();
-//                int day = cldr.get(Calendar.DAY_OF_MONTH);
-//                int month = cldr.get(Calendar.MONTH);
-//                int year = cldr.get(Calendar.YEAR);
-//
-//                pickerDate = new DatePickerDialog(NewMedicineActivity.this,
-//                        new DatePickerDialog.OnDateSetListener()
-//                        {
-//                            @Override
-//                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-//                            {
-//                                eText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-//                            }
-//                        }, year, month, day);
-//                pickerDate.show();
-//            }
-//        });
-//        btnGet=(Button)findViewById(R.id.button1);
-//        btnGet.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                tvw.setText("Selected Date: "+ eText.getText());
-//            }
-//        });
     }
 
-    private String getType() {
-        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        int selectedID = radioGroup.getCheckedRadioButtonId();
-
-        RadioButton radioButton = (RadioButton) findViewById(selectedID);
-        return (String) radioButton.getText();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public String getTime (){
-        TimePicker picker = (TimePicker) findViewById(R.id.timePicker1);
-//        LocalTime time = LocalTime.of(, picker.getMinute());
+    public String getTimeNow (){
 
         String hour = String.format("%02d", picker.getHour());
         String minute = String.format("%02d", picker.getMinute());
@@ -138,11 +81,13 @@ public class NewMedicineActivity extends AppCompatActivity {
         return hour + ":" + minute;
     }
 
+    //    return currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
+  //  }
 
-    public boolean checkTime(String timeNow, String timeMed) {
+    public boolean checkTime (String timeNow, String timeMed){
 
-        if (timeNow.equals(timeMed)) {
+        if (timeNow.equals(timeMed)){
 
             return true;
 
@@ -155,7 +100,9 @@ public class NewMedicineActivity extends AppCompatActivity {
     }
 
     //Method helps save selected item in drop down menu
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long l)
+    {
         String item = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
@@ -191,6 +138,8 @@ public class NewMedicineActivity extends AppCompatActivity {
 
 
 
-    }
 
+    }
 }
+
+
