@@ -125,7 +125,11 @@ public class NewMedicineActivity extends AppCompatActivity {
         TimePicker picker = (TimePicker) findViewById(R.id.timePicker1);
 //        LocalTime time = LocalTime.of(, picker.getMinute());
 
-        return Integer.toString(picker.getHour()) + ":" + Integer.toString(picker.getMinute()) ;
+        String hour = String.format("%02d", picker.getHour());
+        String minute = String.format("%02d", picker.getMinute());
+
+
+        return hour + ":" + minute;
     }
 
 
