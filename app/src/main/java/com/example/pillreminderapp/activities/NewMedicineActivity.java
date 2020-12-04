@@ -28,14 +28,16 @@ import android.widget.Toast;
 import com.example.pillreminderapp.R;
 import com.example.pillreminderapp.TimeStringConverter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 
 public class NewMedicineActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
     String IMEINumber="",token="";
-    public static final String NAME = "com.example.android.Medicinelistsql.REPLY";
-    public static final String TYPE = "com.example.android.Medicinelistsql.REPLY";
-    public static final String TIME = "com.example.android.Medicinelistsql.REPLY";
+    public static final String NAME = "com.example.android.Medicinelistsql.REPLY1";
+    public static final String TYPE = "com.example.android.Medicinelistsql.REPLY2";
+    public static final String TIME = "com.example.android.Medicinelistsql.REPLY3";
     private EditText mEditMedicineView;
     DatePickerDialog pickerDate;
     EditText eText;
@@ -64,7 +66,11 @@ public class NewMedicineActivity extends AppCompatActivity {
                 replyIntent.putExtra(TIME, Time);
                 replyIntent.putExtra(TYPE, Type);
                 setResult(RESULT_OK, replyIntent);
-               addNotification(Medicine, Time, Type);
+                try {
+                    addNotification(Medicine, Time, Type);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 //                gettokenagainstimei(IMEINumber);
             }
             finish();
@@ -158,14 +164,16 @@ public class NewMedicineActivity extends AppCompatActivity {
 
     }
 
-    public void addNotification(String Medicine, String Time, String Type)
-    {
+    public void addNotification(String Medicine, String Time, String Type) throws ParseException {
         Intent intent = new Intent(this, NewMedicineActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         long timeAtButtonClick = System.currentTimeMillis();
-        long notifTime = Long.parseLong(Time);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+
+        long notifTime = dateFormat.parse(Time).getTime();
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, notifTime, pendingIntent);
 
