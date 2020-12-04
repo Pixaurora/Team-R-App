@@ -32,6 +32,8 @@ import com.example.pillreminderapp.TimeStringConverter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.Date;
+import java.util.Locale;
 
 public class NewMedicineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final int REQUEST_CODE = 101;
