@@ -1,50 +1,77 @@
 package com.example.pillreminderapp.activities;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Notification;
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
-import android.content.Intent;
-import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.pillreminderapp.R;
-import com.example.pillreminderapp.datastorage.Medicine;
-import com.example.pillreminderapp.datastorage.MedicineListAdapter;
-import com.example.pillreminderapp.datastorage.MedicineViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    private NotificationManagerCompat notificationManager;
-    private MedicineViewModel mMedicineViewModel;
-
-
+    private static final int REQUEST_CODE = 101;
+    private String IMEINumber="dummy",token="dummy";  ///the notification token is saved with the device IMEI number
+    private static final String TAG = "MainActivity";
+    public static final String CHANNEL_ID = "channel1";
+    private static String token1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        daily_reminder = findViewById(R.id.daily_reminder);
         checkBuildVersion();
-//        buttonClicked();
-    }
+        /*
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+                        token = task.getResult();
+                        Toast.makeText(MainActivity.this, token, Toast.LENGTH_SHORT).show();
+                        registerimeinumber(IMEINumber,token);
+                        token1=token;
+                    }
+                });
+        getDeviceIMEI();
+        */
 
+
+    }
     private void checkBuildVersion() {
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) { /// only newer versions of android have channels
-            NotificationChannel channel1 = new NotificationChannel("Channel1", "Channel 1", NotificationManager.IMPORTANCE_DEFAULT);
+           NotificationChannel channel1 = new NotificationChannel("channel1", "Channel 1", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel1);
+
+
+
         }
     }
 
@@ -82,4 +109,65 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    @SuppressLint("HardwareIds")
+    public void getDeviceIMEI() {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_CODE);
+            return;
+        }
+        IMEINumber = telephonyManager.getDeviceId();
+        registerimeinumber(IMEINumber,token);
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Permission granted.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }
+
+    }
+    public void registerimeinumber(final String imei,final String token)
+    {
+        StringRequest request = new StringRequest(Request.Method.POST,"http://www.studentfyp.online/insertimei.php", new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject data = new JSONObject(response);
+                    int success=data.getInt("success");
+                    String msg=data.getString("msg");
+                    if(success==1)
+                    {
+                    }
+                    else
+                    {
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.d("verror","Error: "+volleyError.getMessage());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parameters = new HashMap<String, String>();
+                parameters.put("imei",imei);
+                parameters.put("token",token1);
+                return parameters;
+            }
+        };
+        RequestQueue rQueue = Volley.newRequestQueue(MainActivity.this);
+        rQueue.add(request);
+    }
 }

@@ -15,12 +15,11 @@
         android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
+        android:onClick="goToMainActivity"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_icon"
-        android:onClick="goToMainActivity"
-        />
+        app:srcCompat="@drawable/back_icon" />
 
     <ImageButton
         android:id="@+id/buttonToHome_home"
@@ -28,12 +27,11 @@
         android:layout_height="42dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
+        android:onClick="goToMainActivity"
         android:scaleType="fitStart"
         app:layout_constraintStart_toEndOf="@+id/buttonToHome_arrow"
         app:layout_constraintTop_toTopOf="@+id/buttonToHome_arrow"
-        app:srcCompat="@drawable/home_icon"
-        android:onClick="goToMainActivity"
-        />
+        app:srcCompat="@drawable/home_icon" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
@@ -54,9 +52,9 @@
         android:layout_marginEnd="64dp"
         android:layout_marginBottom="24dp"
         android:contentDescription="@string/add_word"
+        android:src="@drawable/ic_baseline_add_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_baseline_add_24"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
