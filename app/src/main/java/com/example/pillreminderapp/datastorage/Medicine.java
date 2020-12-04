@@ -48,7 +48,7 @@ public class Medicine
 //                ", type='" + type + '\'' +
 //                ", timeTaken='" + timeTaken + '\'' +
 //                '}';
-        return "Medicine name: " + name;
+        return "Medicine name: " + name + " - type : " + type + " - time taken : " + timeTaken;
     }
 
 

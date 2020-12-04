@@ -15,12 +15,24 @@ import android.widget.Toast;
 
 import com.example.pillreminderapp.R;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
-public class NewMedicineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener
-{
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+
+public class NewMedicineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private static final int REQUEST_CODE = 101;
+    String IMEINumber="",token="";
+    public static final String NAME = "com.example.android.Medicinelistsql.REPLY1";
+    public static final String TYPE = "com.example.android.Medicinelistsql.REPLY2";
+    public static final String TIME = "com.example.android.Medicinelistsql.REPLY3";
+    private EditText mEditMedicineView;
+    DatePickerDialog pickerDate;
+    EditText eText;
+    Button btnGet;
+    TextView tvw;
+    int NotificationId = 0;
+
 
     public static final String EXTRA_REPLY = "com.example.android.Medicinelistsql.REPLY";
 
@@ -41,6 +53,13 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
                 String Medicine = mEditMedicineView.getText().toString();
                 replyIntent.putExtra(EXTRA_REPLY, Medicine);
                 setResult(RESULT_OK, replyIntent);
+                try {
+                    addNotification(Medicine, Time, Type);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+//                gettokenagainstimei(IMEINumber);
+
             }
             finish();
         });
@@ -55,11 +74,16 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
 
     public String getTimeNow (){
 
-        String currentTime;
+        String hour = String.format("%02d", picker.getHour());
+        String minute = String.format("%02d", picker.getMinute());
 
-        return currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
+        return hour + ":" + minute;
     }
+
+    //    return currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+
+  //  }
 
     public boolean checkTime (String timeNow, String timeMed){
 
@@ -83,9 +107,37 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView)
-    {
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    public void addNotification(String Medicine, String Time, String Type) throws ParseException {
+        Intent intent = new Intent(this, NewMedicineActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        long timeAtButtonClick = System.currentTimeMillis();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+
+        long notifTime = dateFormat.parse(Time).getTime();
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, notifTime, pendingIntent);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "channel1")
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setContentTitle("Time to take your Medicine!")
+                .setContentText("Time to take your " + Medicine + " " + Type)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(0, builder.build());
+        NotificationId++;
+
+
+
 
     }
 }
