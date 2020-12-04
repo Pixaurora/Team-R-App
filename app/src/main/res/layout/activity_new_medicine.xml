@@ -1,127 +1,33 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <EditText
+        android:id="@+id/edit_Medicine"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/min_height"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_Medicine"
+        android:inputType="textAutoComplete"
+        android:layout_margin="@dimen/big_padding"
+        android:textSize="18sp" />
 
-        <TimePicker
-            android:id="@+id/timePicker1"
-            android:layout_width="383dp"
-            android:layout_height="180dp"
-            android:timePickerMode="spinner"
-            app:layout_constraintBottom_toTopOf="@+id/button_save"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_save"
+        android:layout_margin="@dimen/big_padding"
+        android:textColor="@color/buttonLabel" />
 
-        <Button
-            android:id="@+id/button_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/big_padding"
-            android:background="@color/colorPrimary"
-            android:text="@string/button_save"
-            android:textColor="@color/buttonLabel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timePicker1"
-            tools:layout_editor_absoluteX="0dp" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleX="1.25"
-            android:scaleY="1.25"
-            app:layout_constraintBottom_toTopOf="@+id/timePicker1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_Medicine">
-
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/typePill" />
-
-            <RadioButton
-                android:id="@+id/radioButton5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/typeInjection" />
-
-            <RadioButton
-                android:id="@+id/radioButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/typeSnack" />
-
-        </RadioGroup>
-
-        <EditText
-            android:id="@+id/edit_Medicine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/big_padding"
-            android:fontFamily="sans-serif-light"
-            android:hint="@string/hint_Medicine"
-            android:inputType="textAutoComplete"
-            android:minHeight="@dimen/min_height"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/editTextTextPersonName2"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="100dp"-->
-        <!--            android:layout_marginTop="40dp"-->
-        <!--            android:ems="10"-->
-        <!--            android:inputType="textPersonName"-->
-        <!--            android:text="Icons:"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/editText1" />-->
-
-        <!--        <ImageButton-->
-        <!--            android:id="@+id/imageButton"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintBottom_toTopOf="@+id/button_save"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"-->
-        <!--            app:srcCompat="@drawable/morning_icon" />-->
-
-        <!--        <ImageButton-->
-        <!--            android:id="@+id/imageButton2"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintBottom_toBottomOf="@+id/imageButton4"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="@+id/imageButton4"-->
-        <!--            app:layout_constraintVertical_bias="0.412"-->
-        <!--            app:srcCompat="@drawable/bedtime_icon" />-->
-
-        <!--        <ImageButton-->
-        <!--            android:id="@+id/imageButton4"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintBottom_toBottomOf="@+id/imageButton"-->
-        <!--            app:layout_constraintEnd_toStartOf="@+id/imageButton2"-->
-        <!--            app:layout_constraintStart_toEndOf="@+id/imageButton"-->
-        <!--            app:layout_constraintTop_toTopOf="@+id/imageButton"-->
-        <!--            app:srcCompat="@drawable/dinner_icon" />-->
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        
+        />
 
 </LinearLayout>
