@@ -12,7 +12,7 @@ jobs:
     - name: Send Push Notification
       uses: techulus/push-github-action@1.0.0
       env:
-        API_KEY: ${{589b3420-6170-43af-86c8-87a3111c15b9}}
+        API_KEY: ${{secrets.589b3420-6170-43af-86c8-87a3111c15b9}}
         MESSAGE: "Hey Deven Sharma, There's a new build!"
     
 
