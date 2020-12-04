@@ -26,13 +26,14 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.pillreminderapp.R;
+
 import com.example.pillreminderapp.TimeStringConverter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 
-public class NewMedicineActivity extends AppCompatActivity {
+public class NewMedicineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     private static final int REQUEST_CODE = 101;
     String IMEINumber="",token="";
     public static final String NAME = "com.example.android.Medicinelistsql.REPLY1";
@@ -44,7 +45,6 @@ public class NewMedicineActivity extends AppCompatActivity {
     Button btnGet;
     TextView tvw;
     int NotificationId = 0;
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -131,16 +131,13 @@ public class NewMedicineActivity extends AppCompatActivity {
         TimePicker picker = (TimePicker) findViewById(R.id.timePicker1);
 //        LocalTime time = LocalTime.of(, picker.getMinute());
 
-        String hour = String.format("%02d", picker.getHour());
-        String minute = String.format("%02d", picker.getMinute());
+        String currentTime;
 
+        return currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
-        return hour + ":" + minute;
     }
 
-
-
-    public boolean checkTime(String timeNow, String timeMed) {
+    public boolean checkTime (String timeNow, String timeMed){
 
         if (timeNow.equals(timeMed)) {
 
@@ -188,9 +185,6 @@ public class NewMedicineActivity extends AppCompatActivity {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(0, builder.build());
         NotificationId++;
-
-
-
     }
 
 }
