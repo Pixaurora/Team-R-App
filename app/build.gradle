@@ -48,7 +48,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycleVersion"
-
+    implementation "com.android.support:support-compat:28.0.0"
     implementation "androidx.preference:preference:$rootProject.androidxPreferenceVersion"
 
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"

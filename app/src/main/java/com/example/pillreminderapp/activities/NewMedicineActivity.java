@@ -28,10 +28,12 @@ import android.widget.Toast;
 import com.example.pillreminderapp.R;
 
 import com.example.pillreminderapp.TimeStringConverter;
+import com.example.pillreminderapp.datastorage.NotificationMessage;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -164,7 +166,20 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
     }
 
     public void addNotification(String Medicine, String Time, String Type) throws ParseException {
-        Intent intent = new Intent(this, NewMedicineActivity.class);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 25);
+        calendar.set(Calendar.SECOND, 0);
+
+        Intent notificationmessage = new Intent(getApplicationContext(), NotificationMessage.class);
+
+//This is alarm manager
+        PendingIntent pi = PendingIntent.getService(this, 0 , notificationmessage, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, pi);
+       /* Intent intent = new Intent(this, NewMedicineActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -187,6 +202,8 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(0, builder.build());
         NotificationId++;
+        */
+
     }
 
 }

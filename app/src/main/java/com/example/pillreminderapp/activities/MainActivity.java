@@ -35,7 +35,10 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
+
     private String IMEINumber="dummy",token="dummy";  ///the notification token is saved with the device IMEI number
+
+
     private static final String TAG = "MainActivity";
     public static final String CHANNEL_ID = "channel1";
     private static String token1;
