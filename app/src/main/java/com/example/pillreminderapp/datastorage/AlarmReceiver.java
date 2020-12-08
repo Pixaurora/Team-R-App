@@ -1,6 +1,6 @@
 package com.example.pillreminderapp.datastorage;
 
-import android.app.AlarmManager;
+/* import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,22 +13,62 @@ import com.example.pillreminderapp.R;
 import com.example.pillreminderapp.activities.NewMedicineActivity;
 
 import static android.content.Context.ALARM_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
+import static androidx.core.content.ContextCompat.getSystemService; */
 
-public class AlarmReceiver /*extends BroadcastReceiver*/
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import android.app.AlarmManager;
+import android.app.DatePickerDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.example.pillreminderapp.R;
+
+import com.example.pillreminderapp.TimeStringConverter;
+import com.example.pillreminderapp.activities.NewMedicineActivity;
+import com.example.pillreminderapp.datastorage.NotificationMessage;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
+import static android.content.Context.ALARM_SERVICE;
+
+public class AlarmReceiver extends BroadcastReceiver
 {
-/*
-    int NotificationID = 0;
+
+    int NotificationId = 0;
 
     @Override
     public void onReceive(Context context, Intent intent)
     {
-
+        //showNotification(context);
     }
 
-    public void addNotification(String Medicine, String Time, String Type)
+    public void showNotification(String Medicine, String Time, String Type)
     {
-        Intent intent = new Intent(this, NewMedicineActivity.class);
+     /*   Intent intent = new Intent(this, NewMedicineActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -48,7 +88,9 @@ public class AlarmReceiver /*extends BroadcastReceiver*/
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(0, builder.build());
         NotificationId++;
+
+      */
     }
 
-*/
+
 }

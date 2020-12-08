@@ -179,7 +179,7 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
         AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
         am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, pi);
-       /* Intent intent = new Intent(this, NewMedicineActivity.class);
+        Intent intent = new Intent(this, NewMedicineActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -202,7 +202,7 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(0, builder.build());
         NotificationId++;
-        */
+
 
     }
 
