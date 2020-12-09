@@ -48,43 +48,25 @@
         style="@android:style/Widget.Material.Button"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        android:layout_marginBottom="20dp"
-        android:background="@android:color/holo_orange_light"
+        android:layout_marginBottom="32dp"
+        android:background="@android:color/holo_blue_light"
         android:drawableLeft="@drawable/calendar_icon"
         android:onClick="goToCalendarActivity"
         android:text="@string/home_button2"
         android:textColor="@android:color/black"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/add_medication"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:targetApi="lollipop" />
-
-
-    <Button
-        android:id="@+id/add_medication"
-        style="@android:style/Widget.Material.Button"
-        android:layout_width="400dp"
-        android:layout_height="120dp"
-        android:layout_marginBottom="16dp"
-        android:background="@android:color/holo_blue_light"
-        android:drawableLeft="@drawable/doctor_icon"
-        android:onClick="goToMedsActivity"
-        android:text="@string/home_button3"
-        android:textColor="@android:color/black"
-        android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/home_button1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         tools:targetApi="lollipop" />
+
 
     <Button
         android:id="@+id/home_button1"
         style="@android:style/Widget.Material.Button"
         android:layout_width="400dp"
         android:layout_height="120dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="32dp"
         android:background="@android:color/holo_red_light"
         android:drawableLeft="@drawable/pill_icon"
         android:onClick="goToMedInfoActivity"
