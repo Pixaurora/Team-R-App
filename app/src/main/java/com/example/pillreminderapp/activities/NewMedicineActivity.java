@@ -5,7 +5,6 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
@@ -177,13 +176,12 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
 //This is alarm manager
         PendingIntent pi = PendingIntent.getService(this, 0 , notificationmessage, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, pi);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pi);
         Intent intent = new Intent(this, NewMedicineActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        long timeAtButtonClick = System.currentTimeMillis();
+        //long timeAtButtonClick = System.currentTimeMillis();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
@@ -199,9 +197,7 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
                 .setAutoCancel(true);
 
 
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-        notificationManager.notify(0, builder.build());
-        NotificationId++;
+
 
 
     }
