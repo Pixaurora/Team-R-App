@@ -132,11 +132,8 @@ public class NewMedicineActivity extends AppCompatActivity implements AdapterVie
     @RequiresApi(api = Build.VERSION_CODES.O)
     public String getTime (){
         TimePicker picker = (TimePicker) findViewById(R.id.timePicker1);
-//        LocalTime time = LocalTime.of(, picker.getMinute());
 
-        String currentTime;
-
-        return currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        return picker.getHour() + ":" + picker.getMinute();
 
     }
 
