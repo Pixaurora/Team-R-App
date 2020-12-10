@@ -15,11 +15,12 @@
         android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
-        android:onClick="goToMainActivity"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back_icon" />
+        app:srcCompat="@drawable/back_icon"
+        android:onClick="goToMainActivity"
+        />
 
     <ImageButton
         android:id="@+id/buttonToHome_home"
@@ -27,11 +28,12 @@
         android:layout_height="42dp"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
-        android:onClick="goToMainActivity"
         android:scaleType="fitStart"
         app:layout_constraintStart_toEndOf="@+id/buttonToHome_arrow"
         app:layout_constraintTop_toTopOf="@+id/buttonToHome_arrow"
-        app:srcCompat="@drawable/home_icon" />
+        app:srcCompat="@drawable/home_icon"
+        android:onClick="goToMainActivity"
+        />
 
     <ScrollView
         android:layout_width="match_parent"
