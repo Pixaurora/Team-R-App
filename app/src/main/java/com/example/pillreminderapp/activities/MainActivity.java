@@ -2,8 +2,10 @@ package com.example.pillreminderapp.activities;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -30,6 +32,7 @@ import com.example.pillreminderapp.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,7 +83,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+    public void createNotification (View view) {
+        Intent myIntent = new Intent(getApplicationContext() , NotifyService. class ) ;
+        AlarmManager alarmManager = (AlarmManager) getSystemService( ALARM_SERVICE ) ;
+        PendingIntent pendingIntent = PendingIntent. getService ( this, 0 , myIntent , 0 ) ;
+        Calendar calendar = Calendar. getInstance () ;
+        calendar.set(Calendar. SECOND , 0 ) ;
+        calendar.set(Calendar. MINUTE , 0 ) ;
+        calendar.set(Calendar. HOUR , 0 ) ;
+        calendar.set(Calendar. AM_PM , Calendar. AM ) ;
+        calendar.add(Calendar. DAY_OF_MONTH , 1 ) ;
+        alarmManager.setRepeating(AlarmManager. RTC_WAKEUP , calendar.getTimeInMillis() , 1000 * 60 * 60 * 24 , pendingIntent) ;
+    }
 
 
 

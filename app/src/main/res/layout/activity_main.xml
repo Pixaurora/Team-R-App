@@ -95,6 +95,17 @@
         android:onClick="goToSettingsActivity"
         />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="180dp"
+        android:onClick="createNotification"
+        android:text="create notification"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="6dp" />
+
+
     <!-- I have no idea why this wont work lol fml -->
 
 
